@@ -1,0 +1,39 @@
+﻿<Window x:Class="UbntDiscovery.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ubnt Discovery Modified By JoKeR@Mustafa Mohammed" Height="400" Width="800" WindowStartupLocation="CenterScreen" ContentRendered="Window_ContentRendered"    >
+    <Window.Resources>
+        <Style TargetType="Button" >
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Width" Value="60px"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="289*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid IsReadOnly="True" Margin="10" Grid.Row="0" HorizontalAlignment="Stretch" ItemsSource="{Binding Devices}" AutoGenerateColumns="False" SelectionMode="Single" CanUserResizeRows="False" CanUserAddRows="False" HorizontalGridLinesBrush="#DDDDDD" VerticalGridLinesBrush="#DDDDDD" HeadersVisibility="Column" FlowDirection="RightToLeft"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="اسم الجهاز" Width="*" Binding="{Binding Hostname}" />
+                <DataGridTextColumn Header="اسم الشبكة" Width="*" Binding="{Binding SSID}" />
+                <DataGridTextColumn Header="وضع الجهاز" Width="0.9*" Binding="{Binding WirelessModeDescription}" />
+                <DataGridTextColumn Header="الايبي ادريس" Width="0.9*" Binding="{Binding FirstAddress.IpAddress}" />
+                <DataGridTextColumn Header="الماك ادريس" Width="1.1*" Binding="{Binding FormatedMacAddress}" />
+                <DataGridTextColumn Header="نوع الجهاز" Width="*" Binding="{Binding LongPlatform}" />
+                <DataGridTextColumn Header="السوفت وير" Width="*" Binding="{Binding Firmware}" />
+                <DataGridTextColumn Header="مدة التشغيل" Width="0.9*" Binding="{Binding Path=Uptime, StringFormat='{}{0:d\\d\\ hh\\:mm\\:ss}' }" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,10">
+            <Button Content="تفريغ" Margin="0,0,10,0" Click="ClearClick"/>
+            <Button Content="بحث" Margin="0,0,10,0" Click="ScanClick"/>
+            
+
+        </StackPanel>
+        <Button Content="حول" HorizontalAlignment="Left" Margin="14,3,0,0" Click="ExitClick" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
+
+    </Grid>
+</Window>
